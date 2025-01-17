@@ -18,6 +18,19 @@ void	free_array(int **tab, int size)
 
 	i = 0;
 	while (i < size)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
+void	free_char_array(char **tab, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
 		free(tab[i++]);
 	free(tab);
 }

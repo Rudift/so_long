@@ -30,6 +30,7 @@
 # define KEY_S 115
 # define KEY_A 97
 # define KEY_D 100
+# define ESC 65307
 
 
 # include "../mlx/mlx.h"
@@ -62,12 +63,15 @@ typedef struct s_data
 	int		**visit;
 	int		tot_coin;
 	int		play_coin;
+	int		tot_move;
 }	t_data;
 
 
 /*Fonctions*/
 void	error_manager(t_data *data, char *message, int free_data);
 void	ber_checker(char *ber_input);
+int		close_game(t_data *data);
+/*Init*/
 void	data_init(t_data *data, char *path);
 
 
@@ -84,6 +88,7 @@ int		map_height(int fd);
 
 /*Utilitaire*/
 void	free_array(int **tab, int size);
+void	free_char_array(char **tab, int size);
 
 /*Display*/
 void	load_textures(t_data *data);

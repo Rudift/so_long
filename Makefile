@@ -8,7 +8,6 @@ LIBFT_LIB = $(LIBFT_DIR)libft.a
 PRINTF_DIR = printf/
 PRINTF_LIB = $(PRINTF_DIR)libftprintf.a
 SRC_DIR = srcs/
-SANITIZE = -fsanitize=address -g3
 
 SRC = ${SRC_DIR}main.c ${SRC_DIR}init.c ${SRC_DIR}map_creator.c ${SRC_DIR}map_checker.c ${SRC_DIR}map_checker2.c ${SRC_DIR}utils.c ${SRC_DIR}display.c ${SRC_DIR}moving.c
 OBJ = ${SRC:.c=.o}
@@ -26,7 +25,7 @@ subsystems :
 	@make -C $(PRINTF_DIR) all
 
 ${NAME}: ${OBJ}
-	${CC} ${FLAGS} ${MLX_FLAGS} ${OBJ} ${MLX_LIB} ${LIBFT_LIB} ${PRINTF_LIB} -o ${NAME} -g ${SANITIZE}
+	${CC} ${FLAGS} ${MLX_FLAGS} ${OBJ} ${MLX_LIB} ${LIBFT_LIB} ${PRINTF_LIB} -o ${NAME} -g
 
 clean:
 	@make -C ${MLX_DIR} clean

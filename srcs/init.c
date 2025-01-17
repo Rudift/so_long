@@ -26,11 +26,9 @@ void	data_init(t_data *data, char *path)
 	data->visit = NULL;
 	data->tot_coin = 0;
 	data->play_coin = 0;
-	ft_printf("%s\n", path);
+	data->tot_move = 0;
 	data->mlx_ptr = mlx_init();
-	ft_printf("mlx initialized\n");
 	map_init(data, path);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, ((data->width) * TILE_SIZE), ((data->height) * TILE_SIZE), "test");
-	ft_printf("window initialized\n");
 	map_checker(data);
 }

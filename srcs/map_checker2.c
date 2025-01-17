@@ -56,10 +56,10 @@ void	connect_checker(t_data *data)
 	int x = data->p_x;
 
 	i = 0;
-	data->visit = malloc (data->height * sizeof(int *));
+	data->visit = malloc (data->height * sizeof(int **));
 	while (i < data->height)
 	{
-		data->visit[i] = calloc(data->width, sizeof(int));
+		data->visit[i] = calloc(data->width, sizeof(int*));
 		i++;
 	}
 	dfs(data, y, x);
@@ -78,5 +78,7 @@ void	connect_checker(t_data *data)
 		}
 		i++;
 	}
+	free_array(data->visit, data->height);
+
 	return ;
 }
