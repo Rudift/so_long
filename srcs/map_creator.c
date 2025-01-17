@@ -25,7 +25,6 @@ int	map_height(int fd)
 		free (next_line);
 		height ++;
 	}
-	ft_printf ("height : %d\n", height);
 	return (height);
 }
 void	map_init(t_data *data, char *path)

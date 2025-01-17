@@ -24,10 +24,7 @@ void	load_textures(t_data *data)
 	data->t_player = mlx_xpm_file_to_image(data->mlx_ptr, "./srcs/textures/elf_1.xpm", &width, &height);
 	data->t_exit = mlx_xpm_file_to_image(data->mlx_ptr, "./srcs/textures/exit.xpm", &width, &height);
 	if (!data->t_wall || !data->t_floor || !data->t_exit || !data->t_coin || !data->t_player)
-	{
-		ft_printf("Error\n");
 		error_manager(data, "Textures loading error !\n", 1);
-	}
 	return ;
 }
 
@@ -38,7 +35,6 @@ void	render_map(t_data *data)
 	void	*img;
 
 	y = 0;
-	img = NULL;
 	while (y < data->height)
 	{
 		x = 0;
@@ -61,5 +57,4 @@ void	render_map(t_data *data)
 		}
 		y++;
 	}
-	//free(img);
 }

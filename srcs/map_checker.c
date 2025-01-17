@@ -21,14 +21,10 @@ void	width_checker(t_data *data)
 	{
 		ft_printf("width line %d = %d\n", i, ft_strlen(data->map[i]));
 		if(ft_strlen(data->map[i - 1]) != ft_strlen(data->map[i]))
-		{
-			ft_printf("Error\n");
 			error_manager(data, "Non-Rectangular Map\n", 1);
-		}
 		i++;
 	}
 	return ;
-	ft_printf("Map is rectangular\n");
 }
 
 void	char_checker(t_data *data)
@@ -45,10 +41,7 @@ void	char_checker(t_data *data)
 		{
 			if (data->map[i][j] != '0' && data->map[i][j] != '1' && data->map[i][j] != 'E' 
 				&& data->map[i][j] != 'P' && data->map[i][j] != 'C' && data->map[i][j] != '\n')
-			{
-				ft_printf("Error\n");
 				error_manager(data, "Invalid map content !\n", 1);
-			}
 			j++;
 		}
 		i++;
@@ -69,15 +62,9 @@ void	border_map_checker(t_data *data)
 		while (j < data->width)
 		{
 			if (data->map[i][j] != WALL && (i == 0 || i == (data->height) - 1)) 
-			{
-				ft_printf("Error\n");
 				error_manager(data, "Invalid map borders !\n", 1);
-			}
 			if (data->map[i][j] != WALL && (j == 0 || j == (data->width) - 1))
-			{
-				ft_printf("Error\n");
 				error_manager(data, "Invalid map borders !\n", 1);
-			}
 			j++;
 		}
 		i++;
@@ -111,10 +98,7 @@ void	element_checker(t_data *data)
 		y++;
 	}
 	if (e_count != 1 || p_count != 1 || data->tot_coin < 1)
-	{
-		ft_printf("Error\n");
 		error_manager(data, "Invalid number of elements !\n", 1);
-	}
 }
 
 void	map_checker(t_data *data)

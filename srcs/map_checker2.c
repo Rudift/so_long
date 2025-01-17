@@ -70,10 +70,7 @@ void	connect_checker(t_data *data)
 		while (j < data->width)
 		{
 			if((data->map[i][j] == EXIT || data->map[i][j] == COIN) && !data->visit[i][j])
-			{
-				ft_printf("Error\n");
 				error_manager(data, "Impossible map\n", 1);
-			}
 			j++;
 		}
 		i++;
