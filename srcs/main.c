@@ -69,7 +69,7 @@ int	esc_game(int keycode, t_data *data)
 	{
 		ft_printf("\n\no====||==================>\n");
 		ft_printf("ARE YOU FLEEING ? COWARD !\n");
-		ft_printf("<==================||====o\n");
+		ft_printf("<==================||====o\n\n\n");
 		close_game(data);
 	}
 	return(0);
@@ -91,7 +91,7 @@ int	main(int ac, char **av)
 	render_map(data);
 	mlx_key_hook(data->win_ptr, &esc_game, data);
 	mlx_hook(data->win_ptr, 17, 0, close_game, data);
-	mlx_key_hook(data->win_ptr, &moving, data);
+	mlx_hook(data->win_ptr,KeyPress,KeyPressMask, &moving, data);
 	mlx_loop(data->mlx_ptr);
 	return(0);
 }

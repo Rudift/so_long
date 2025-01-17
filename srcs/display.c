@@ -61,5 +61,5 @@ void	render_map(t_data *data)
 		}
 		y++;
 	}
-	
+	//free(img);
 }
