@@ -1,0 +1,61 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_creator.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vdeliere <vdeliere@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-01-10 08:38:41 by vdeliere          #+#    #+#             */
+/*   Updated: 2025-01-10 08:38:41 by vdeliere         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+
+int	map_height(int fd)
+{
+	char	*next_line;
+	int		height;
+
+	height = 0;
+	while ((next_line = get_next_line(fd)))
+	{
+		ft_printf("%s\n", next_line);
+		free (next_line);
+		height ++;
+	}
+	ft_printf ("height : %d\n", height);
+	return (height);
+}
+void	map_init(t_data *data, char *path)
+{
+	int		fd;
+	int		i;
+
+	i = 0;
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_printf("Error\n");
+		error_manager(data, "Map can't be open\n", 0);
+	}
+	//faire un premier passage de get_next_line pour avoir le nombre de ligne
+	data->height = map_height(fd);
+	data->map = malloc(data->height*sizeof(char *));
+	if (data->map == NULL)
+		error_manager(data, "Map malloc error\n", 1);
+	close(fd);
+	fd = open(path, O_RDONLY);
+	while (i < data->height)
+	{
+		data->map[i] = ft_strdup(get_next_line(fd));
+		ft_printf("%s\n", data->map[i]);
+		i++;
+	}
+	close (fd);
+	printf("i : %d\n", i);
+	ft_printf("Map Initialized !\n");
+	data->width = ft_strlen(data->map[0]) - 1;
+	ft_printf("width : %d\n",data->width);
+}
