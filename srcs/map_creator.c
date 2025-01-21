@@ -31,6 +31,7 @@ void	map_init(t_data *data, char *path)
 {
 	int		fd;
 	int		i;
+	char	*next_line;
 
 	i = 0;
 	fd = open(path, O_RDONLY);
@@ -48,7 +49,9 @@ void	map_init(t_data *data, char *path)
 	fd = open(path, O_RDONLY);
 	while (i < data->height)
 	{
-		data->map[i] = ft_strdup(get_next_line(fd));
+		next_line = get_next_line(fd);
+		data->map[i] = ft_strdup(next_line);
+		free (next_line);
 		ft_printf("%s\n", data->map[i]);
 		i++;
 	}

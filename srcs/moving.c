@@ -24,7 +24,7 @@ void	move_player(t_data *data, int y, int x)
 		else if (data->map[y][x] == EXIT && data->play_coin == data->tot_coin)
 		{
 			ft_printf ("\n\nYOU WIN !\n\n\n");
-			close_game(data);
+			close_game(data, 1);
 		}
 		if (data->map[data->p_y][data->p_x] == EXIT && data->play_coin != data->tot_coin)
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data-> t_exit,  data->p_x* TILE_SIZE, data->p_y * TILE_SIZE);

@@ -46,18 +46,22 @@ void	ber_checker (char *ber_input)
 	return ;
 }
 
-int	close_game(t_data *data)
+int	close_game(t_data *data, int win)
 {
-	ft_printf("\n\no====||==================>\n");
-	ft_printf("ARE YOU FLEEING ? COWARD !\n");
-	ft_printf("<==================||====o\n\n\n");
+	mlx_loop_end(data->mlx_ptr);
+	if (win != 1)
+	{
+		ft_printf("\n\no====||==================>\n");
+		ft_printf("ARE YOU FLEEING ? COWARD !\n");
+		ft_printf("<==================||====o\n\n\n");
+	}
+	mlx_destroy_image(data->mlx_ptr, data->t_wall);
+	mlx_destroy_image(data->mlx_ptr, data->t_floor);
+	mlx_destroy_image(data->mlx_ptr, data->t_player);
+	mlx_destroy_image(data->mlx_ptr, data->t_coin);
+	mlx_destroy_image(data->mlx_ptr, data->t_exit);
     mlx_destroy_window(data->mlx_ptr, data->win_ptr);
     mlx_destroy_display(data->mlx_ptr);
-	free (data->t_wall);
-	free (data->t_floor);
-	free (data->t_player);
-	free (data->t_coin);
-	free (data->t_exit);
 	free_char_array(data->map, data->height);
 	free(data->mlx_ptr);
 	free(data);
@@ -68,7 +72,7 @@ int	esc_game(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 	{
-		close_game(data);
+		close_game(data, 0);
 	}
 	return(0);
 }
