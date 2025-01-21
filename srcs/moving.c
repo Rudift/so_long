@@ -12,25 +12,34 @@
 
 #include "so_long.h"
 
+void	the_game(t_data	*data, int y, int x)
+{
+	if (data->map[y][x] == COIN)
+	{
+		data->play_coin++;
+		data->map[y][x] = FLOOR;
+	}
+	else if (data->map[y][x] == EXIT && data->play_coin == data->tot_coin)
+	{
+		ft_printf ("\n\nYOU WIN !\n\n\n");
+		close_game(data, 1);
+	}
+}
+
 void	move_player(t_data *data, int y, int x)
 {
 	if (data->map[y][x] != WALL)
 	{
-		if (data->map[y][x] == COIN)
-		{
-			data->play_coin++;
-			data->map[y][x] = FLOOR;
-		}
-		else if (data->map[y][x] == EXIT && data->play_coin == data->tot_coin)
-		{
-			ft_printf ("\n\nYOU WIN !\n\n\n");
-			close_game(data, 1);
-		}
-		if (data->map[data->p_y][data->p_x] == EXIT && data->play_coin != data->tot_coin)
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data-> t_exit,  data->p_x* TILE_SIZE, data->p_y * TILE_SIZE);
+		the_game(data, y, x);
+		if (data->map[data->p_y][data->p_x] == EXIT
+			&& data->play_coin != data->tot_coin)
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data-> t_exit,
+				data->p_x * TILE_SIZE, data->p_y * TILE_SIZE);
 		else
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data-> t_floor,  data->p_x* TILE_SIZE, data->p_y * TILE_SIZE);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data-> t_player,  x * TILE_SIZE, y * TILE_SIZE);
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+				data-> t_floor, data->p_x * TILE_SIZE, data->p_y * TILE_SIZE);
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data-> t_player, x * TILE_SIZE, y * TILE_SIZE);
 		data->p_x = x;
 		data->p_y = y;
 		data->tot_move++;
@@ -55,4 +64,3 @@ int	moving(int keycode, t_data *data)
 		move_player(data, y, x + 1);
 	return (0);
 }
-

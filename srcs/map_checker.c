@@ -19,7 +19,7 @@ void	width_checker(t_data *data)
 	i = 1;
 	while (i < data->height)
 	{
-		if(ft_strlen(data->map[i - 1]) != ft_strlen(data->map[i]))
+		if (ft_strlen(data->map[i - 1]) != ft_strlen(data->map[i]))
 			error_manager(data, "Non-Rectangular Map\n", 1);
 		i++;
 	}
@@ -29,7 +29,7 @@ void	width_checker(t_data *data)
 void	char_checker(t_data *data)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -38,8 +38,9 @@ void	char_checker(t_data *data)
 		j = 0;
 		while (data ->map[i][j] != '\0')
 		{
-			if (data->map[i][j] != '0' && data->map[i][j] != '1' && data->map[i][j] != 'E' 
-				&& data->map[i][j] != 'P' && data->map[i][j] != 'C' && data->map[i][j] != '\n')
+			if (data->map[i][j] != '0' && data->map[i][j] != '1'
+				&& data->map[i][j] != 'E' && data->map[i][j] != 'P'
+				&& data->map[i][j] != 'C' && data->map[i][j] != '\n')
 				error_manager(data, "Invalid map content !\n", 1);
 			j++;
 		}
@@ -60,7 +61,7 @@ void	border_map_checker(t_data *data)
 		j = 0;
 		while (j < data->width)
 		{
-			if (data->map[i][j] != WALL && (i == 0 || i == (data->height) - 1)) 
+			if (data->map[i][j] != WALL && (i == 0 || i == (data->height) - 1))
 				error_manager(data, "Invalid map borders !\n", 1);
 			if (data->map[i][j] != WALL && (j == 0 || j == (data->width) - 1))
 				error_manager(data, "Invalid map borders !\n", 1);
@@ -111,4 +112,3 @@ void	map_checker(t_data *data)
 	ft_printf("Map successfully checked\n");
 	return ;
 }
-

@@ -32,7 +32,6 @@
 # define KEY_D 100
 # define ESC 65307
 
-
 # include "../mlx/mlx.h"
 # include "../printf/ft_printf.h"
 # include "../libft/libft.h"
@@ -66,14 +65,12 @@ typedef struct s_data
 	int		tot_move;
 }	t_data;
 
-
 /*Fonctions*/
 void	error_manager(t_data *data, char *message, int free_data);
 void	ber_checker(char *ber_input);
 int		close_game(t_data *data, int win);
 /*Init*/
 void	data_init(t_data *data, char *path);
-
 
 /*Map checker*/
 void	map_checker(t_data *data);
@@ -96,6 +93,6 @@ void	render_map(t_data *data);
 void	destroy_images(t_data *data);
 
 /*Move*/
-int	moving(int keycode, t_data *data);
+int		moving(int keycode, t_data *data);
 
 #endif

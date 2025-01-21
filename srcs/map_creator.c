@@ -12,20 +12,22 @@
 
 #include "so_long.h"
 
-
 int	map_height(int fd)
 {
 	char	*next_line;
 	int		height;
 
 	height = 0;
-	while ((next_line = get_next_line(fd)))
+	next_line = get_next_line(fd);
+	while ((next_line))
 	{
 		free (next_line);
 		height ++;
+		next_line = get_next_line(fd);
 	}
 	return (height);
 }
+
 void	map_init(t_data *data, char *path)
 {
 	int		fd;
@@ -39,21 +41,18 @@ void	map_init(t_data *data, char *path)
 		ft_printf("Error\n");
 		error_manager(data, "Map can't be open\n", 0);
 	}
-	//faire un premier passage de get_next_line pour avoir le nombre de ligne
 	data->height = map_height(fd);
 	close(fd);
-	data->map = malloc(data->height*sizeof(char *));
+	data->map = malloc(data->height * sizeof(char *));
 	if (data->map == NULL)
 		error_manager(data, "Map malloc error\n", 0);
 	fd = open(path, O_RDONLY);
 	while (i < data->height)
 	{
 		next_line = get_next_line(fd);
-		data->map[i] = ft_strdup(next_line);
+		data->map[i++] = ft_strdup(next_line);
 		free (next_line);
-		i++;
 	}
 	close (fd);
-	ft_printf("Map Initialized !\n");
 	data->width = ft_strlen(data->map[0]) - 1;
 }

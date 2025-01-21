@@ -30,5 +30,6 @@ void	data_init(t_data *data, char *path)
 	map_init(data, path);
 	map_checker(data);
 	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, ((data->width) * TILE_SIZE), ((data->height) * TILE_SIZE), "test");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, ((data->width) * TILE_SIZE),
+			((data->height) * TILE_SIZE), "test");
 }

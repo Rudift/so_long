@@ -37,7 +37,7 @@ void	find_pyx(t_data *data)
 
 void	dfs(t_data *data, int y, int x)
 {
-	if (y < 0 || x < 0 || y >= data->height || x >= data->width 
+	if (y < 0 || x < 0 || y >= data->height || x >= data->width
 		|| data->map[y][x] == WALL || data->visit[y][x])
 		return ;
 	data->visit[y][x] = 1;
@@ -48,20 +48,26 @@ void	dfs(t_data *data, int y, int x)
 	return ;
 }
 
+void	imposible_map_checker(t_data *data, int i, int j)
+{
+	if ((data->map[i][j] == EXIT || data->map[i][j] == COIN)
+				&& !data->visit[i][j])
+		error_manager(data, "Impossible map\n", 1);
+}
+
 void	connect_checker(t_data *data)
 {
 	int	i;
 	int	j;
-	int y = data->p_y;
-	int x = data->p_x;
+	int	y;
+	int	x;
 
+	y = data->p_y;
+	x = data->p_x;
 	i = 0;
 	data->visit = malloc (data->height * sizeof(int **));
 	while (i < data->height)
-	{
-		data->visit[i] = calloc(data->width, sizeof(int*));
-		i++;
-	}
+		data->visit[i++] = calloc(data->width, sizeof(int *));
 	dfs(data, y, x);
 	i = 0;
 	while (i < data->height)
@@ -69,13 +75,11 @@ void	connect_checker(t_data *data)
 		j = 0;
 		while (j < data->width)
 		{
-			if((data->map[i][j] == EXIT || data->map[i][j] == COIN) && !data->visit[i][j])
-				error_manager(data, "Impossible map\n", 1);
+			imposible_map_checker(data, i, j);
 			j++;
 		}
 		i++;
 	}
 	free_array(data->visit, data->height);
-
 	return ;
 }
