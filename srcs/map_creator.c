@@ -21,7 +21,6 @@ int	map_height(int fd)
 	height = 0;
 	while ((next_line = get_next_line(fd)))
 	{
-		ft_printf("%s\n", next_line);
 		free (next_line);
 		height ++;
 	}
@@ -42,22 +41,19 @@ void	map_init(t_data *data, char *path)
 	}
 	//faire un premier passage de get_next_line pour avoir le nombre de ligne
 	data->height = map_height(fd);
+	close(fd);
 	data->map = malloc(data->height*sizeof(char *));
 	if (data->map == NULL)
-		error_manager(data, "Map malloc error\n", 1);
-	close(fd);
+		error_manager(data, "Map malloc error\n", 0);
 	fd = open(path, O_RDONLY);
 	while (i < data->height)
 	{
 		next_line = get_next_line(fd);
 		data->map[i] = ft_strdup(next_line);
 		free (next_line);
-		ft_printf("%s\n", data->map[i]);
 		i++;
 	}
 	close (fd);
-	printf("i : %d\n", i);
 	ft_printf("Map Initialized !\n");
 	data->width = ft_strlen(data->map[0]) - 1;
-	ft_printf("width : %d\n",data->width);
 }

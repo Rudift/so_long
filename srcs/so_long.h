@@ -93,6 +93,7 @@ void	free_char_array(char **tab, int size);
 /*Display*/
 void	load_textures(t_data *data);
 void	render_map(t_data *data);
+void	destroy_images(t_data *data);
 
 /*Move*/
 int	moving(int keycode, t_data *data);

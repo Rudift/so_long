@@ -12,6 +12,20 @@
 
 #include "so_long.h"
 
+void	destroy_images(t_data *data)
+{
+	if (data->t_wall)
+		mlx_destroy_image(data->mlx_ptr, data->t_wall);
+	if (data->t_floor)
+		mlx_destroy_image(data->mlx_ptr, data->t_floor);
+	if (data->t_player)
+		mlx_destroy_image(data->mlx_ptr, data->t_player);
+	if (data->t_coin)
+		mlx_destroy_image(data->mlx_ptr, data->t_coin);
+	if (data->t_exit)
+		mlx_destroy_image(data->mlx_ptr, data->t_exit);
+}
+
 void	load_textures(t_data *data)
 {
 
@@ -24,7 +38,7 @@ void	load_textures(t_data *data)
 	data->t_player = mlx_xpm_file_to_image(data->mlx_ptr, "./srcs/textures/elf_1.xpm", &width, &height);
 	data->t_exit = mlx_xpm_file_to_image(data->mlx_ptr, "./srcs/textures/exit.xpm", &width, &height);
 	if (!data->t_wall || !data->t_floor || !data->t_exit || !data->t_coin || !data->t_player)
-		error_manager(data, "Textures loading error !\n", 1);
+		error_manager(data, "Textures loading error !\n", 2);
 	return ;
 }
 

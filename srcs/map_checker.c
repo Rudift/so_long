@@ -19,7 +19,6 @@ void	width_checker(t_data *data)
 	i = 1;
 	while (i < data->height)
 	{
-		ft_printf("width line %d = %d\n", i, ft_strlen(data->map[i]));
 		if(ft_strlen(data->map[i - 1]) != ft_strlen(data->map[i]))
 			error_manager(data, "Non-Rectangular Map\n", 1);
 		i++;
