@@ -75,7 +75,6 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		error_manager(NULL, "Invalid number of argument\n", 0);
 	ber_checker(av[1]);
-	ft_printf(".ber checked\n");
 	data_init(data, av[1]);
 	load_textures(data);
 	render_map(data);
