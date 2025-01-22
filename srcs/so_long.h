@@ -67,7 +67,6 @@ typedef struct s_data
 
 /*Fonctions*/
 void	error_manager(t_data *data, char *message, int free_data);
-void	ber_checker(char *ber_input);
 int		close_game(t_data *data, int win);
 /*Init*/
 void	data_init(t_data *data, char *path);

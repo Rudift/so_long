@@ -17,8 +17,13 @@ void	error_manager(t_data *data, char *message, int free_data)
 	int	i;
 
 	i = 0;
+	if (free_data == 0)
+		free(data);
 	if (free_data == 1 || free_data == 2)
+	{
 		free_char_array(data->map, data->height);
+		free(data);
+	}
 	if (free_data == 2)
 	{
 		destroy_images(data);
@@ -28,13 +33,13 @@ void	error_manager(t_data *data, char *message, int free_data)
 	exit(EXIT_FAILURE);
 }
 
-void	ber_checker(char *ber_input)
+void	ber_checker(t_data *data, char *ber_input)
 {
 	ber_input++;
 	while (*ber_input != '.')
 		ber_input++;
 	if (ft_strncmp(ber_input, ".ber", 4) != 0)
-		error_manager(NULL, "Wrong file format !\n", 0);
+		error_manager(data, "Wrong file format !\n", 0);
 	return ;
 }
 
@@ -73,8 +78,8 @@ int	main(int ac, char **av)
 	if (data == NULL)
 		error_manager(NULL, "Malloc error\n", 0);
 	if (ac != 2)
-		error_manager(NULL, "Invalid number of argument\n", 0);
-	ber_checker(av[1]);
+		error_manager(data, "Invalid number of argument\n", 0);
+	ber_checker(data, av[1]);
 	data_init(data, av[1]);
 	load_textures(data);
 	render_map(data);

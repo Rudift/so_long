@@ -25,6 +25,7 @@ int	map_height(int fd)
 		height ++;
 		next_line = get_next_line(fd);
 	}
+	free (next_line);
 	return (height);
 }
 
@@ -37,10 +38,7 @@ void	map_init(t_data *data, char *path)
 	i = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_printf("Error\n");
 		error_manager(data, "Map can't be open\n", 0);
-	}
 	data->height = map_height(fd);
 	close(fd);
 	data->map = malloc(data->height * sizeof(char *));
@@ -53,6 +51,7 @@ void	map_init(t_data *data, char *path)
 		data->map[i++] = ft_strdup(next_line);
 		free (next_line);
 	}
+	get_next_line(fd);
 	close (fd);
 	data->width = ft_strlen(data->map[0]) - 1;
 }
