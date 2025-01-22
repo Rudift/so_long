@@ -40,7 +40,8 @@ void	char_checker(t_data *data)
 		{
 			if (data->map[i][j] != '0' && data->map[i][j] != '1'
 				&& data->map[i][j] != 'E' && data->map[i][j] != 'P'
-				&& data->map[i][j] != 'C' && data->map[i][j] != '\n')
+				&& data->map[i][j] != 'C' && data->map[i][j] != '\n'
+				&& data->map[i][j] != 'F')
 				error_manager(data, "Invalid map content !\n", 1);
 			j++;
 		}

@@ -20,7 +20,9 @@ void	data_init(t_data *data, char *path)
 	data->p_x = 0;
 	data->t_wall = NULL;
 	data->t_floor = NULL;
-	data->t_player = NULL;
+	data->t_play_left = NULL;
+	data->t_play_right = NULL;
+	data->t_play_pos = NULL;
 	data->t_coin = NULL;
 	data->t_exit = NULL;
 	data->visit = NULL;

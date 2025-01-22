@@ -18,6 +18,7 @@
 # define COIN 'C'
 # define EXIT 'E'
 # define PLAYER 'P'
+# define FOES 'F'
 
 # define TILE_SIZE 42
 
@@ -51,14 +52,19 @@ typedef struct s_data
 	void	*win_ptr;
 	void	*t_wall;
 	void	*t_floor;
-	void	*t_player;
+	void	*t_play_left;
+	void	*t_play_pos;
+	void	*t_play_right;
 	void	*t_coin;
 	void	*t_exit;
+	void	*t_foes;
 	char	**map;
 	int		height;
 	int		width;
 	int		p_y;
 	int		p_x;
+	int		f_y;
+	int		f_x;
 	int		**visit;
 	int		tot_coin;
 	int		play_coin;
@@ -90,6 +96,7 @@ void	free_char_array(char **tab, int size);
 void	load_textures(t_data *data);
 void	render_map(t_data *data);
 void	destroy_images(t_data *data);
+void 	clear_count(t_data *data, int width, int height, int x, int y);
 
 /*Move*/
 int		moving(int keycode, t_data *data);

@@ -86,6 +86,9 @@ int	main(int ac, char **av)
 	mlx_key_hook(data->win_ptr, &esc_game, data);
 	mlx_hook(data->win_ptr, 17, 0, close_game, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &moving, data);
+	clear_count(data, 42, 42, 10, 10);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 35, 0x4F3818,
+		ft_itoa(data->tot_move));
 	mlx_loop(data->mlx_ptr);
 	return (0);
 }
