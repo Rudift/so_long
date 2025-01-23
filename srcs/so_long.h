@@ -75,11 +75,12 @@ typedef struct s_data
 	int		tot_move;
 	int		play_init;
 	int		timer_iddle;
+	int		end;
 }	t_data;
 
 /*Fonctions*/
 void	error_manager(t_data *data, char *message, int free_data);
-int		close_game(t_data *data, int win);
+int		close_game(t_data *data);
 /*Init*/
 void	data_init(t_data *data, char *path);
 

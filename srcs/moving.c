@@ -22,20 +22,26 @@ void	the_game(t_data	*data, int y, int x)
 	else if (data->map[y][x] == EXIT && data->play_coin == data->tot_coin)
 	{
 		ft_printf ("\n\nYOU WIN !\n\n\n");
-		close_game(data, 1);
+		data->end = 1;
+		close_game(data);
 	}
 	else if (data->map[y][x] == FOES)
 	{
 		ft_printf ("\n\nYOU LOOSE !\n\n\n");
-		close_game(data, 1);
+		data->end = 1;
+		close_game(data);
 	}
 }
 
 void	count_move(t_data *data)
 {
+	char	*str;
+
+	str = ft_itoa(data->tot_move);
 	data->tot_move++;
 	clear_count(data, 42, 42, 10, 10);
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 35, 0x4F3818,ft_itoa(data->tot_move));
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 35, 0x4F3818,str);
+	free(str);
 }
 
 void	move_player(t_data *data, int y, int x)
@@ -43,7 +49,6 @@ void	move_player(t_data *data, int y, int x)
 	if (data->map[y][x] != WALL)
 	{
 		the_game(data, y, x);
-		mlx_clear_window(data->mlx_ptr, data->win_ptr);
 		data->p_x = x;
 		data->p_y = y;
 		render_map(data);

@@ -32,12 +32,14 @@ void clear_count(t_data *data, int width, int height, int x, int y)
 
 void	destroy_images(t_data *data)
 {
+	if (data->t_coin)
+		mlx_destroy_image(data->mlx_ptr, data->t_coin);
+	if (data->t_exit)
+		mlx_destroy_image(data->mlx_ptr, data->t_exit);
 	if (data->t_wall)
 		mlx_destroy_image(data->mlx_ptr, data->t_wall);
 	if (data->t_floor)
 		mlx_destroy_image(data->mlx_ptr, data->t_floor);
-	if (data->t_play_pos)
-		mlx_destroy_image(data->mlx_ptr, data->t_play_pos);
 	if (data->t_play_left1)
 		mlx_destroy_image(data->mlx_ptr, data->t_play_left1);
 	if (data->t_play_left2)
@@ -46,12 +48,6 @@ void	destroy_images(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->t_play_right1);
 	if (data->t_play_right2)
 		mlx_destroy_image(data->mlx_ptr, data->t_play_right2);
-	if (data->t_coin)
-		mlx_destroy_image(data->mlx_ptr, data->t_coin);
-	if (data->t_exit)
-		mlx_destroy_image(data->mlx_ptr, data->t_exit);
-	if (data->t_foes_pos)
-		mlx_destroy_image(data->mlx_ptr, data->t_foes_pos);
 	if (data->t_foes1)
 		mlx_destroy_image(data->mlx_ptr, data->t_foes1);
 	if (data->t_foes2)
@@ -79,18 +75,18 @@ void	load_textures(t_data *data)
 			"./srcs/textures/play_left_2.xpm", &width, &height);
 	data->t_play_right2 = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./srcs/textures/play_right_2.xpm", &width, &height);
-	data->t_play_pos = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./srcs/textures/play_right_1.xpm", &width, &height);
 	data->t_exit = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./srcs/textures/exit.xpm", &width, &height);
-	data->t_foes_pos = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./srcs/textures/skeleton.xpm", &width, &height);
 	data->t_foes1 = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./srcs/textures/skeleton.xpm", &width, &height);
 	data->t_foes2 = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./srcs/textures/skeleton2.xpm", &width, &height);
+	data->t_play_pos = data->t_play_right1;
+	data->t_foes_pos = data->t_foes1;
 	if (!data->t_wall || !data->t_floor || !data->t_exit
-		|| !data->t_coin || !data->t_play_left1 || !data->t_play_left2 || !data->t_play_right1 || !data->t_play_right2 || !data->t_play_pos || !data->t_foes1 || !data->t_foes2 || !data->t_foes_pos)
+		|| !data->t_coin || !data->t_play_left1 || !data->t_play_left2 
+		|| !data->t_play_right1 || !data->t_play_right2 || !data->t_play_pos 
+		|| !data->t_foes1 || !data->t_foes2 || !data->t_foes_pos)
 		error_manager(data, "Textures loading error !\n", 2);
 	return ;
 }

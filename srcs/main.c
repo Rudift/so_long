@@ -22,12 +22,12 @@ void	error_manager(t_data *data, char *message, int free_data)
 	if (free_data == 1 || free_data == 2)
 	{
 		free_char_array(data->map, data->height);
-		free(data);
 	}
 	if (free_data == 2)
 	{
 		destroy_images(data);
 	}
+	free(data);
 	ft_printf("Error\n");
 	ft_putstr_fd(message, 2);
 	exit(EXIT_FAILURE);
@@ -43,10 +43,10 @@ void	ber_checker(t_data *data, char *ber_input)
 	return ;
 }
 
-int	close_game(t_data *data, int win)
+int	close_game(t_data *data)
 {
 	mlx_loop_end(data->mlx_ptr);
-	if (win != 1)
+	if (data->end == 0)
 	{
 		ft_printf("\n\no====||==================>\n");
 		ft_printf("ARE YOU FLEEING ? COWARD !\n");
@@ -65,7 +65,7 @@ int	esc_game(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 	{
-		close_game(data, 0);
+		close_game(data);
 	}
 	return (0);
 }
@@ -87,8 +87,7 @@ int	main(int ac, char **av)
 	mlx_hook(data->win_ptr, 17, 0, close_game, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &moving, data);
 	clear_count(data, 42, 42, 10, 10);
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 35, 0x4F3818,
-		ft_itoa(data->tot_move));
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 35, 0x4F3818, "0");
 	mlx_loop_hook(data->mlx_ptr, &iddle, data);
 	mlx_loop(data->mlx_ptr);
 	return (0);

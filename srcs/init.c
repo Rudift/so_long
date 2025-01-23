@@ -35,9 +35,12 @@ void	data_init(t_data *data, char *path)
 	data->play_coin = 0;
 	data->tot_move = 0;
 	data->timer_iddle = 0;
+	data->end = 0;
 	map_init(data, path);
 	map_checker(data);
 	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+	error_manager(data, "Mlx initialization error !\n", 1);	
 	data->win_ptr = mlx_new_window(data->mlx_ptr, ((data->width) * TILE_SIZE),
 			((data->height) * TILE_SIZE), "test");
 }

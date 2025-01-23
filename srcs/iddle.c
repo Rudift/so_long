@@ -48,16 +48,20 @@ int	iddle_player(t_data *data)
 
 int	iddle(t_data *data)
 {
+	char	*str;
+
+	str = ft_itoa(data->tot_move);
 	data->timer_iddle++;
-	if (data->timer_iddle >= 10000)
+	if (data->timer_iddle >= 5000)
 	{
 		data->timer_iddle = 0;
 		iddle_foes(data);
 		iddle_player(data);
-		mlx_clear_window(data->mlx_ptr, data->win_ptr);
 		render_map(data);
 		clear_count(data, 42, 42, 10, 10);
-		mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 35, 0x4F3818,ft_itoa(data->tot_move));
+
+		mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 35, 0x4F3818, str);
 	}
+	free(str);
 	return (0);
 }

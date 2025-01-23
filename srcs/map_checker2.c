@@ -52,7 +52,10 @@ void	imposible_map_checker(t_data *data, int i, int j)
 {
 	if ((data->map[i][j] == EXIT || data->map[i][j] == COIN)
 				&& !data->visit[i][j])
+	{
+		free_array(data->visit, data->height);
 		error_manager(data, "Impossible map\n", 1);
+	}
 }
 
 void	connect_checker(t_data *data)
