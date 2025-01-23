@@ -10,7 +10,7 @@ PRINTF_LIB = $(PRINTF_DIR)libftprintf.a
 SRC_DIR = srcs/
 #SANITIZE = -fsanitize=address -g3
 
-SRC = ${SRC_DIR}main.c ${SRC_DIR}init.c ${SRC_DIR}map_creator.c ${SRC_DIR}map_checker.c ${SRC_DIR}map_checker2.c ${SRC_DIR}utils.c ${SRC_DIR}display.c ${SRC_DIR}moving.c
+SRC = ${SRC_DIR}main.c ${SRC_DIR}init.c ${SRC_DIR}map_creator.c ${SRC_DIR}map_checker.c ${SRC_DIR}map_checker2.c ${SRC_DIR}utils.c ${SRC_DIR}display.c ${SRC_DIR}moving.c ${SRC_DIR}iddle.c
 OBJ = ${SRC:.c=.o}
 
 MLX_FLAGS =  -L$(MLX_DIR) -lmlx_Linux -L/usr/lib/x11 -lXext -lX11 -lm

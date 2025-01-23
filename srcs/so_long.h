@@ -52,12 +52,16 @@ typedef struct s_data
 	void	*win_ptr;
 	void	*t_wall;
 	void	*t_floor;
-	void	*t_play_left;
 	void	*t_play_pos;
-	void	*t_play_right;
+	void	*t_play_left1;
+	void	*t_play_left2;
+	void	*t_play_right1;
+	void	*t_play_right2;
 	void	*t_coin;
 	void	*t_exit;
-	void	*t_foes;
+	void	*t_foes_pos;
+	void	*t_foes1;
+	void	*t_foes2;
 	char	**map;
 	int		height;
 	int		width;
@@ -69,6 +73,8 @@ typedef struct s_data
 	int		tot_coin;
 	int		play_coin;
 	int		tot_move;
+	int		play_init;
+	int		timer_iddle;
 }	t_data;
 
 /*Fonctions*/
@@ -100,5 +106,9 @@ void 	clear_count(t_data *data, int width, int height, int x, int y);
 
 /*Move*/
 int		moving(int keycode, t_data *data);
+
+/*Iddle*/
+int	iddle_foes(t_data *data);
+int	iddle(t_data *data);
 
 #endif
