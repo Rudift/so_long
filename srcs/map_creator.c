@@ -12,6 +12,8 @@
 
 #include "so_long.h"
 
+/*Defini la hauteur de la map*/
+
 int	map_height(int fd)
 {
 	char	*next_line;
@@ -28,6 +30,8 @@ int	map_height(int fd)
 	free (next_line);
 	return (height);
 }
+
+/*Initialise la map*/
 
 void	map_init(t_data *data, char *path)
 {

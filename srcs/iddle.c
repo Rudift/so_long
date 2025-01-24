@@ -12,6 +12,8 @@
 
 #include "so_long.h"
 
+/*Animation des squelettes*/
+
 int	iddle_foes(t_data *data)
 {
 	if (data->t_foes_pos == data->t_foes1)
@@ -24,6 +26,8 @@ int	iddle_foes(t_data *data)
 	}
 	return (0);
 }
+
+/*Animation du joueur*/
 
 int	iddle_player(t_data *data)
 {
@@ -45,6 +49,8 @@ int	iddle_player(t_data *data)
 	}
 	return (0);
 }
+
+/*Gestionnaire d'anoimation avec timer*/
 
 int	iddle(t_data *data)
 {

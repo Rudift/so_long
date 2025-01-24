@@ -12,6 +12,8 @@
 
 #include "so_long.h"
 
+/*Detruit les images existante*/
+
 void	destroy_images(t_data *data)
 {
 	if (data->t_coin)
@@ -36,8 +38,10 @@ void	destroy_images(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->t_foes2);
 }
 
+/*Deuxieme partie du chargement des textures*/
+
 void	load_textures2(t_data *data, int width, int height)
-{
+{	
 	data->t_foes1 = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./srcs/textures/skeleton.xpm", &width, &height);
 	data->t_foes2 = mlx_xpm_file_to_image(data->mlx_ptr,
@@ -50,6 +54,8 @@ void	load_textures2(t_data *data, int width, int height)
 		|| !data->t_foes2)
 		error_manager(data, "Textures loading error !\n", 2);
 }
+
+/*Chargement des textures dans la structure*/
 
 void	load_textures(t_data *data)
 {
@@ -77,6 +83,8 @@ void	load_textures(t_data *data)
 	load_textures2(data, width, height);
 }
 
+/*Affichage d'image en fonction de data->map[y][x]*/
+
 void	img_assign(t_data *data, void *img, int x, int y)
 {
 	if (data->map[y][x] == FLOOR || data->map[y][x] == PLAYER)
@@ -102,6 +110,9 @@ void	img_assign(t_data *data, void *img, int x, int y)
 		mlx_put_image_to_window(data->mlx_ptr,
 			data->win_ptr, img, x * TILE_SIZE, y * TILE_SIZE);
 }
+
+/*Boucle pour parcourir la map*/
+/*Appelle img_assign pour chaque coordonnees de la map*/
 
 void	render_map(t_data *data)
 {

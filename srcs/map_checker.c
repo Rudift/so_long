@@ -12,6 +12,8 @@
 
 #include "so_long.h"
 
+/*verifie que la map est rectangulaire*/
+
 void	width_checker(t_data *data)
 {
 	int	i;
@@ -25,6 +27,8 @@ void	width_checker(t_data *data)
 	}
 	return ;
 }
+
+/*Verifie le contenu de la map*/
 
 void	char_checker(t_data *data)
 {
@@ -50,6 +54,8 @@ void	char_checker(t_data *data)
 	return ;
 }
 
+/*verifie que la map est entourree par des murs*/
+
 void	border_map_checker(t_data *data)
 {
 	int	i;
@@ -72,6 +78,8 @@ void	border_map_checker(t_data *data)
 	}
 	return ;
 }
+
+/*Verifie le nombre correcte d'elements*/
 
 void	element_checker(t_data *data)
 {
@@ -101,6 +109,8 @@ void	element_checker(t_data *data)
 	if (e_count != 1 || p_count != 1 || data->tot_coin < 1)
 		error_manager(data, "Invalid number of elements !\n", 1);
 }
+
+/*Verifie la map*/
 
 void	map_checker(t_data *data)
 {

@@ -12,6 +12,8 @@
 
 #include "so_long.h"
 
+/*Enregistre dans data les coordonnees de departs du joueur*/
+
 void	find_pyx(t_data *data)
 {
 	int	y;
@@ -35,19 +37,23 @@ void	find_pyx(t_data *data)
 	return ;
 }
 
-void	dfs(t_data *data, int y, int x)
+/*Cree un tableau d'int materialisant les chemins possibles*/
+
+void	visit_map(t_data *data, int y, int x)
 {
 	if (y < 0 || x < 0 || y >= data->height || x >= data->width
 		|| data->map[y][x] == WALL || data->map[y][x] == FOES
 		|| data->visit[y][x])
 		return ;
 	data->visit[y][x] = 1;
-	dfs(data, y + 1, x);
-	dfs(data, y - 1, x);
-	dfs(data, y, x + 1);
-	dfs(data, y, x - 1);
+	visit_map(data, y + 1, x);
+	visit_map(data, y - 1, x);
+	visit_map(data, y, x + 1);
+	visit_map(data, y, x - 1);
 	return ;
 }
+
+/*les deux fonctions suivants check si la map est finissable par le joueur*/
 
 void	imposible_map_checker(t_data *data, int i, int j)
 {
@@ -72,7 +78,7 @@ void	connect_checker(t_data *data)
 	data->visit = malloc (data->height * sizeof(int **));
 	while (i < data->height)
 		data->visit[i++] = calloc(data->width, sizeof(int *));
-	dfs(data, y, x);
+	visit_map(data, y, x);
 	i = 0;
 	while (i < data->height)
 	{

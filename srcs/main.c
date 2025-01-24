@@ -12,9 +12,10 @@
 
 #include "so_long.h"
 
+/*Gere les erreurs et ferme proprement le jeu*/
+
 void	error_manager(t_data *data, char *message, int free_data)
 {
-	ft_printf("I'm in the error manager\n");
 	if (free_data == 1 || free_data == 2)
 	{
 		free_char_array(data->map, data->height);
@@ -32,6 +33,8 @@ void	error_manager(t_data *data, char *message, int free_data)
 	exit(EXIT_FAILURE);
 }
 
+/*check le format du fichier en parametre*/
+
 void	ber_checker(t_data *data, char *ber_input)
 {
 	ber_input++;
@@ -41,6 +44,8 @@ void	ber_checker(t_data *data, char *ber_input)
 		error_manager(data, "Wrong file format !\n", 0);
 	return ;
 }
+
+/*Gere la fermeture du jeu dans un cas normal de l'utilisation du jeu*/
 
 int	close_game(t_data *data)
 {
@@ -59,6 +64,8 @@ int	close_game(t_data *data)
 	free(data);
 	exit(EXIT_SUCCESS);
 }
+
+/*fonction qui ferme le jeu en appuyant sur ESC*/
 
 int	esc_game(int keycode, t_data *data)
 {

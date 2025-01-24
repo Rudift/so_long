@@ -12,6 +12,8 @@
 
 #include "so_long.h"
 
+/*Initialisation de la structure data*/
+
 void	data_init2(t_data *data, char *path)
 {
 	data->t_exit = NULL;
