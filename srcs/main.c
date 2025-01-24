@@ -14,11 +14,7 @@
 
 void	error_manager(t_data *data, char *message, int free_data)
 {
-	int	i;
-
-	i = 0;
-	if (free_data == 0)
-		free(data);
+	ft_printf("I'm in the error manager\n");
 	if (free_data == 1 || free_data == 2)
 	{
 		free_char_array(data->map, data->height);
@@ -26,6 +22,10 @@ void	error_manager(t_data *data, char *message, int free_data)
 	if (free_data == 2)
 	{
 		destroy_images(data);
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+
 	}
 	free(data);
 	ft_printf("Error\n");

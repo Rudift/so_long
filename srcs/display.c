@@ -81,13 +81,13 @@ void	load_textures(t_data *data)
 			"./srcs/textures/skeleton.xpm", &width, &height);
 	data->t_foes2 = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./srcs/textures/skeleton2.xpm", &width, &height);
-	data->t_play_pos = data->t_play_right1;
-	data->t_foes_pos = data->t_foes1;
 	if (!data->t_wall || !data->t_floor || !data->t_exit
 		|| !data->t_coin || !data->t_play_left1 || !data->t_play_left2 
-		|| !data->t_play_right1 || !data->t_play_right2 || !data->t_play_pos 
-		|| !data->t_foes1 || !data->t_foes2 || !data->t_foes_pos)
+		|| !data->t_play_right1 || !data->t_play_right2 || !data->t_foes1
+		|| !data->t_foes2)
 		error_manager(data, "Textures loading error !\n", 2);
+	data->t_play_pos = data->t_play_right1;
+	data->t_foes_pos = data->t_foes1;
 	return ;
 }
 

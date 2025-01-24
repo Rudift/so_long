@@ -64,7 +64,8 @@ int	moving(int keycode, t_data *data)
 
 	y = data->p_y;
 	x = data->p_x;
-	data->map[data->p_y][data->p_x] = FLOOR;
+	if (data->map[data->p_y][data->p_x] != EXIT)
+		data->map[data->p_y][data->p_x] = FLOOR;
 	if (keycode == ARROW_DOWN || keycode == KEY_S)
 		move_player(data, y + 1, x);
 	if (keycode == ARROW_UP || keycode == KEY_W)
