@@ -12,24 +12,6 @@
 
 #include "so_long.h"
 
-void clear_count(t_data *data, int width, int height, int x, int y)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < height)
-	{
-		j = 0;
-		while (j < width)
-		{
-			mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + j, y + i, 0xD4D29B);
-			j++;
-		}
-		i++;
-	}
-}
-
 void	destroy_images(t_data *data)
 {
 	if (data->t_coin)
@@ -52,6 +34,21 @@ void	destroy_images(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->t_foes1);
 	if (data->t_foes2)
 		mlx_destroy_image(data->mlx_ptr, data->t_foes2);
+}
+
+void	load_textures2(t_data *data, int width, int height)
+{
+	data->t_foes1 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./srcs/textures/skeleton.xpm", &width, &height);
+	data->t_foes2 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./srcs/textures/skeleton2.xpm", &width, &height);
+	data->t_play_pos = data->t_play_right1;
+	data->t_foes_pos = data->t_foes1;
+	if (!data->t_wall || !data->t_floor || !data->t_exit
+		|| !data->t_coin || !data->t_play_left1 || !data->t_play_left2
+		|| !data->t_play_right1 || !data->t_play_right2 || !data->t_foes1
+		|| !data->t_foes2)
+		error_manager(data, "Textures loading error !\n", 2);
 }
 
 void	load_textures(t_data *data)
@@ -77,18 +74,7 @@ void	load_textures(t_data *data)
 			"./srcs/textures/play_right_2.xpm", &width, &height);
 	data->t_exit = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./srcs/textures/exit.xpm", &width, &height);
-	data->t_foes1 = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./srcs/textures/skeleton.xpm", &width, &height);
-	data->t_foes2 = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./srcs/textures/skeleton2.xpm", &width, &height);
-	if (!data->t_wall || !data->t_floor || !data->t_exit
-		|| !data->t_coin || !data->t_play_left1 || !data->t_play_left2 
-		|| !data->t_play_right1 || !data->t_play_right2 || !data->t_foes1
-		|| !data->t_foes2)
-		error_manager(data, "Textures loading error !\n", 2);
-	data->t_play_pos = data->t_play_right1;
-	data->t_foes_pos = data->t_foes1;
-	return ;
+	load_textures2(data, width, height);
 }
 
 void	img_assign(t_data *data, void *img, int x, int y)
@@ -100,7 +86,7 @@ void	img_assign(t_data *data, void *img, int x, int y)
 	else if (data->map[y][x] == COIN)
 		img = data->t_coin;
 	if (y == data->p_y && x == data->p_x)
-	 	img = data->t_play_pos;
+		img = data->t_play_pos;
 	else if (data->map[y][x] == EXIT)
 		img = data->t_exit;
 	else if (data->map[y][x] == FOES)
@@ -110,7 +96,7 @@ void	img_assign(t_data *data, void *img, int x, int y)
 			data->win_ptr, img, x * TILE_SIZE, y * TILE_SIZE);
 	if (y == data->p_y && x == data->p_x)
 	{
-	 	img = data->t_play_pos;
+		img = data->t_play_pos;
 	}
 	if (img)
 		mlx_put_image_to_window(data->mlx_ptr,

@@ -103,13 +103,13 @@ void	free_char_array(char **tab, int size);
 void	load_textures(t_data *data);
 void	render_map(t_data *data);
 void	destroy_images(t_data *data);
-void 	clear_count(t_data *data, int width, int height, int x, int y);
+void	clear_count(t_data *data, int x, int y);
 
 /*Move*/
 int		moving(int keycode, t_data *data);
 
 /*Iddle*/
-int	iddle_foes(t_data *data);
-int	iddle(t_data *data);
+int		iddle_foes(t_data *data);
+int		iddle(t_data *data);
 
 #endif

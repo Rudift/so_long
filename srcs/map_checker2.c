@@ -38,7 +38,8 @@ void	find_pyx(t_data *data)
 void	dfs(t_data *data, int y, int x)
 {
 	if (y < 0 || x < 0 || y >= data->height || x >= data->width
-		|| data->map[y][x] == WALL || data->map[y][x] == FOES || data->visit[y][x])
+		|| data->map[y][x] == WALL || data->map[y][x] == FOES
+		|| data->visit[y][x])
 		return ;
 	data->visit[y][x] = 1;
 	dfs(data, y + 1, x);

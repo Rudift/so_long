@@ -58,8 +58,7 @@ int	iddle(t_data *data)
 		iddle_foes(data);
 		iddle_player(data);
 		render_map(data);
-		clear_count(data, 42, 42, 10, 10);
-
+		clear_count(data, 10, 10);
 		mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 35, 0x4F3818, str);
 	}
 	free(str);

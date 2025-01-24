@@ -12,6 +12,24 @@
 
 #include "so_long.h"
 
+void	data_init2(t_data *data, char *path)
+{
+	data->t_exit = NULL;
+	data->visit = NULL;
+	data->tot_coin = 0;
+	data->play_coin = 0;
+	data->tot_move = 0;
+	data->timer_iddle = 0;
+	data->end = 0;
+	map_init(data, path);
+	map_checker(data);
+	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+		error_manager(data, "Mlx initialization error !\n", 1);
+	data->win_ptr = mlx_new_window(data->mlx_ptr, ((data->width) * TILE_SIZE),
+			((data->height) * TILE_SIZE), "test");
+}
+
 void	data_init(t_data *data, char *path)
 {
 	data->height = 0;
@@ -29,18 +47,5 @@ void	data_init(t_data *data, char *path)
 	data->t_foes1 = NULL;
 	data->t_foes2 = NULL;
 	data->t_coin = NULL;
-	data->t_exit = NULL;
-	data->visit = NULL;
-	data->tot_coin = 0;
-	data->play_coin = 0;
-	data->tot_move = 0;
-	data->timer_iddle = 0;
-	data->end = 0;
-	map_init(data, path);
-	map_checker(data);
-	data->mlx_ptr = mlx_init();
-	if (!data->mlx_ptr)
-	error_manager(data, "Mlx initialization error !\n", 1);	
-	data->win_ptr = mlx_new_window(data->mlx_ptr, ((data->width) * TILE_SIZE),
-			((data->height) * TILE_SIZE), "test");
+	data_init2(data, path);
 }

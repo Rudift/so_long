@@ -12,6 +12,27 @@
 
 #include "so_long.h"
 
+void	clear_count(t_data *data, int x, int y)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < TILE_SIZE)
+	{
+		j = 0;
+		while (j < TILE_SIZE)
+		{
+			mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + j, y + i, 0xD4D29B);
+			j++;
+		}
+		i++;
+	}
+}
+
+/*verifie les conditions de victoires ou de defaites*/
+/*compte les collectibles ramasse*/
+
 void	the_game(t_data	*data, int y, int x)
 {
 	if (data->map[y][x] == COIN)
@@ -33,16 +54,23 @@ void	the_game(t_data	*data, int y, int x)
 	}
 }
 
+/*compte le nomvbre de mouvement*/
+/*reactualise l'affichage*/
+
 void	count_move(t_data *data)
 {
 	char	*str;
 
 	str = ft_itoa(data->tot_move);
 	data->tot_move++;
-	clear_count(data, 42, 42, 10, 10);
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 35, 0x4F3818,str);
+	clear_count(data, 10, 10);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 35, 0x4F3818, str);
 	free(str);
 }
+
+/*verifie que la case ciblee n'est pas un WALL*/
+/*Deplace le joueur*/
+/*rafraichi l'affichage du jeu apres le mouvement*/
 
 void	move_player(t_data *data, int y, int x)
 {
@@ -56,6 +84,7 @@ void	move_player(t_data *data, int y, int x)
 	}
 }
 
+/*Gere visuelle*/
 
 int	moving(int keycode, t_data *data)
 {

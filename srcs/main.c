@@ -25,7 +25,6 @@ void	error_manager(t_data *data, char *message, int free_data)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
-
 	}
 	free(data);
 	ft_printf("Error\n");
@@ -86,7 +85,7 @@ int	main(int ac, char **av)
 	mlx_key_hook(data->win_ptr, &esc_game, data);
 	mlx_hook(data->win_ptr, 17, 0, close_game, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &moving, data);
-	clear_count(data, 42, 42, 10, 10);
+	clear_count(data, 10, 10);
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 35, 0x4F3818, "0");
 	mlx_loop_hook(data->mlx_ptr, &iddle, data);
 	mlx_loop(data->mlx_ptr);
